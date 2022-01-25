@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MVC Web application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <style>
+        .reg{
+        font-family: Arial; font-size: 15px;
+        width:200px;
+        padding:30px;
+        margin-left:auto;
+        margin-right:auto;
+        border-style:solid;
+
+        }
+        h1{
+        text-align: center;
+        }
+        input{
+        margin-bottom:10px;
+        }
+        input[type=submit]{
+          background-color: white;
+          color: black;
+          border: 2px solid black;
+          margin-top:10px;
+          padding: 10px 20px;
+          display: inline-block;
+        }
+
+        input[type=submit]:hover {
+          background-color:  #add8e6;
+          color: black;
+        }
+    </style>
+
+</head>
+<body>
+
+<h1 >Registra Personale</h1>
+<form class="reg" action="createAccPers" method="post" th:object="${personal}">
+    Codice Fiscale:<input type="text" name="codFiscale" required pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$" ><br>
+    Nome:<input type="text" name="nome" pattern="[A-Za-z].{1,20}" required><br>
+    Cognome:<input type="text" name="cognome" pattern="[A-Za-z].{1,20}" required><br>
+    Username:<input type="text" name="username" required><br>
+    Password:<input type="password" name="password" value="" required pattern=".{6,15}" title="Minimo 6 caratteri, massimo 15" ><br>
+    Indirizzo:<input type="text" name="indirizzo" pattern="[A-Za-z].{1,30}" title="Inserire campo corretto" required><br>
+    Comune:<input type="text" name="comune" pattern="[A-Za-z].{1,30}" title="Inserire campo corretto"  required><br>
+    Cap:<input type="number" id="cap" name="cap" required pattern="[0-9]{5}" title="Il cap deve essere di 5 caratteri" ><br>
+    Provincia:<input type="text" name="provincia" pattern="[A-Za-z].{1,30}" title="Inserire campo corretto" required><br>
+    Telefono1:<input type="number" id="telefono1" name="telefono1" pattern="[0-9]{10}" title="Il numero di telefono deve essere i 10 caratteri"  required><br>
+    Telefono2:<input type="number" id="telefono2" name="telefono2" pattern="[0-9]{10}" title="Il numero di telefono deve essere i 10 caratteri"  required ><br>
+    Clinica:<br><input type="text" name="clinica" pattern="[A-Za-z0-9].{1,30}" required><br>
+    Id Clinica:<br><input type="number" name="idClinica" pattern="[0-9].{1,2}" title="L'id deve essere di massimo 2 caratteri"><br>
+    <input type="radio" name="ruolo" value="Medico">Medico <br>
+    <input type="radio" name="ruolo" value="Infermiere">Infermiere <br>
+    <input type="radio" name="ruolo" value="Receptionist">Receptionist <br>
+
+    <center><input type="submit" value="Invia" /></center>
+
+
+
+</form>
+<center><form>
+    <input type="button" value="Torna indietro"
+           onClick="history.go(-1);return true;"
+           name="button">
+</form>
+</center>
+
+
+</body>
+</html>

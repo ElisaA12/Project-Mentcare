@@ -1,0 +1,103 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MVC Web application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body{ text-align:center; }
+        h1{
+        text-align: center;
+        }
+        input{
+        margin-bottom:10px;
+        }
+        th, td {
+        border: 1px solid black;
+        padding: 8px;
+        }
+
+        thead th {
+          width: 25%;
+        }
+
+        thead {
+          background-color: #add8e6;
+          color: black;
+        }
+        table {
+        widht:500px;
+        border-collapse:collapse;
+        margin-left:auto;
+        margin-right:auto;
+        }
+        input[type=submit] {
+          background-color: white;
+          color: black;
+          border: 2px solid black;
+          margin-top:10px;
+          padding: 5px 10px;
+          display: inline-block;
+        }
+
+        input[type=submit]:hover {
+          background-color:  #add8e6;
+          color: black;
+        }
+        a:link {
+          margin-bottom:10px;
+          text-decoration: none;
+          background-color: white;
+          color: black;
+          border: 2px solid black;
+          margin-top:10px;
+          padding: 5px 10px;
+          display: inline-block;
+        }
+        a:hover {
+          background-color:  #add8e6;
+          color: black;
+        }
+
+        form{
+        padding-top:3px;
+        }
+
+    </style>
+</head>
+
+<body>
+<h1>Lista appuntamenti</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Codice Fiscale Paziente</th>
+        <th>Codice Fiscale Personale</th>
+        <th>Nome Paziente</th>
+        <th>Cognome Paziente</th>
+        <th>Nome Personale</th>
+        <th>Cognome Personale</th>
+        <th>Ambulatorio</th>
+        <th>Descrizione</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="appuntamento: ${App}">
+        <td th:text="${appuntamento.codFiscalePaziente}"></td>
+        <td th:text="${appuntamento.codFiscalePersonale}"></td>
+        <td th:text="${appuntamento.nomePaziente}"></td>
+        <td th:text="${appuntamento.cognomePaziente}"></td>
+        <td th:text="${appuntamento.nomePersonale}"></td>
+        <td th:text="${appuntamento.cognomePersonale}"></td>
+        <td th:text="${appuntamento.ambulatorio}"></td>
+        <td th:text="${appuntamento.descrizione}"></td>
+    </tr>
+    </tbody>
+</table>
+<form>
+    <input type="button" value="Torna indietro"
+           onClick="history.go(-1);return true;"
+           name="button">
+</form>
+
+</body>
+

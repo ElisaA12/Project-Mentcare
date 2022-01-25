@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MVC Web application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body{
+        text-align:center;
+        }
+        form{
+        font-family: Arial; font-size: 15px;
+        width:200px;
+        padding:30px;
+        margin-left:auto;
+        margin-right:auto;
+        border-style:solid;
+
+        }
+        input[type=submit], a:link {
+          text-decoration: none;
+          background-color: white;
+          color: black;
+          border: 2px solid black;
+          margin-top:10px;
+          padding: 10px 20px;
+          display: inline-block;
+        }
+
+        input[type=submit]:hover,  a:hover {
+          background-color:  #add8e6;
+          color: black;
+        }
+        </style>
+
+
+</head>
+
+<body>
+<h1>Inserisci Farmaco</h1>
+
+<form action="inserisciFarm" th:object="${farmaco}" method="post">
+
+    <input type="hidden" name="codPaziente" th:value="${paziente.codFiscale}"><br>
+    Codice farmaco:<input type="text" name="idFarmaco"  required><br>
+    Nome farmaco:<input type="text" name="nome_farmaco" required><br>
+    Dose per giorno:<input type="number" name="dose"   title="Inserisci un numero" required><br>
+    Numero giorni:<input type="number" name="numGiorni"  title="Inserisci un numero" required><br>
+    Costo:<input type="number" name="costo" title="Inserisci un numero" required><br>
+    <input type="hidden" name="codMedico" th:value="${paziente.codiceMedico}"><br>
+    <input type="submit" />
+</form>
+
+
+</body>
+</html>

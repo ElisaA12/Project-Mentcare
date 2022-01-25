@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Infermiere</title>
+    <style>
+        body{
+        text-align:center;
+        }
+        input{
+        margin-bottom:10px;
+        }
+        th, td {
+        border: 1px solid black;
+        padding: 8px;
+        }
+
+        thead th {
+          width: 25%;
+        }
+
+        thead {
+          background-color: #add8e6;
+          color: black;
+        }
+        table {
+        widht:500px;
+        border-collapse:collapse;
+        margin-left:auto;
+        margin-right:auto;
+        }
+        a:link {
+          margin-bottom:10px;
+          text-decoration: none;
+          background-color: white;
+          color: black;
+          border: 2px solid black;
+          margin-top:10px;
+          padding: 10px 20px;
+          display: inline-block;
+        }
+        a:hover {
+          background-color:  #add8e6;
+          color: black;
+        }
+    </style>
+</head>
+
+<body>
+<h1 >Infermiere</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Codice Fiscale</th>
+        <th>Nome</th>
+        <th>Cognome</th>
+        <th>Indirizzo</th>
+        <th>Comune</th>
+        <th>Cap</th>
+        <th>Provincia</th>
+        <th>Telefono1</th>
+        <th>Telefono2</th>
+        <th>Ruolo</th>
+        <th>Clinica</th>
+        <th>Id Clinica</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+
+        <td th:text="${personale.codFiscale}"> <b>John </b></td>
+        <td th:text="${personale.nome}"> <b>John </b></td>
+        <td th:text="${personale.cognome}"> Smith </td>
+        <td th:text="${personale.indirizzo}"> Smith </td>
+        <td th:text="${personale.comune}"> Smith </td>
+        <td th:text="${personale.cap}"> Smith </td>
+        <td th:text="${personale.provincia}"> Smith </td>
+        <td th:text="${personale.telefono1}"> Smith </td>
+        <td th:text="${personale.telefono2}"> Smith </td>
+        <td th:text="${personale.ruolo}"> Smith </td>
+        <td th:text="${personale.clinica}"> Smith </td>
+        <td th:text="${personale.idClinica}"> Smith </td>
+
+    </tr>
+    </tbody>
+</table>
+<p><b> Visualizza Paziente</b></p>
+<p><i>Per visualizzare tutti i pazienti che hai, lasciare il campo vuoto</i></p>
+<form action="visualizzaPaziente" method="get">
+    <input type="text" name="codPaziente"  placeholder="Incerisci codice fiscale paziente">
+    <input name="codPersonale" type="hidden"  th:value="${personale.codFiscale}" >
+    <input type="submit" value="Invia"  />
+</form>
+<br>
+
+
+<p><b>Visualizza appuntamenti</b></p>
+<p><i>Per visualizzare tutti gli appuntamenti, lasciare il campo vuoto</i></p>
+<form action="mostraAppuntamento" method="get">
+    <input type="text" name="codPaziente" placeholder="Incerisci codice fiscale paziente">
+    <input type="hidden" name="codPersonale" th:value="${personale.codFiscale}" >
+    <input type="submit" value="Invia"  />
+</form>
+<br>
+
+
+<td> <a href="loggout" >Logout</a></td>
+
+</body>
+</html>

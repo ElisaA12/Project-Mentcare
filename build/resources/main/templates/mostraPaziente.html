@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>MVC Web application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        h1{
+        text-align: center;
+        }
+        input{
+        margin-bottom:10px;
+        }
+        th, td {
+        border: 1px solid black;
+        padding: 8px;
+        }
+
+        thead th {
+          width: 25%;
+        }
+
+        thead {
+          background-color: #add8e6;
+          color: black;
+        }
+        table {
+        widht:500px;
+        border-collapse:collapse;
+        margin-left:auto;
+        margin-right:auto;
+        }
+        a:link {
+          text-decoration: none;
+          background-color: white;
+          color: black;
+          display: inline-block;
+        }
+        a:hover {
+          color: blue;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<h1>Lista pazienti</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Codice Fiscale</th>
+        <th>Nome</th>
+        <th>Cognome</th>
+        <th>Indirizzo</th>
+        <th>Comune</th>
+        <th>Cap</th>
+        <th>Provincia</th>
+        <th>Telefono1</th>
+        <th>Telefono2</th>
+        <th>Patologia</th>
+        <th>Descrizione</th>
+        <th>Autosufficiente</th>
+        <th>Codice Medico</th>
+        <th>Visualizza Farmaci</th>
+        <th>Visualizza Farmaci Somministrati</th>
+        <th>Inserisci Farmaco</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="paziente: ${pazienti}">
+
+        <td th:text="${paziente.codFiscale}"> <b>uu </b></td>
+        <td th:text="${paziente.nome}"> <b>John </b></td>
+        <td th:text="${paziente.cognome}"> <b>John </b></td>
+        <td th:text="${paziente.indirizzo}"> Smith </td>
+        <td th:text="${paziente.comune}"> Smith </td>
+        <td th:text="${paziente.cap}"> Smith </td>
+        <td th:text="${paziente.provincia}"> Smith </td>
+        <td th:text="${paziente.telefono1}"> Smith </td>
+        <td th:text="${paziente.telefono2}"> Smith </td>
+        <td th:text="${paziente.patologia}"> Smith </td>
+        <td th:text="${paziente.descrizione}"> Smith </td>
+        <td th:text="${paziente.autosufficiente}"> Smith </td>
+        <td th:text="${paziente.codiceMedico}"> Smith </td>
+        <td> <a href="mostraFarmaci?codPaziente&codPersonale" th:href="@{mostraFarmaci(codPaziente=${paziente.codFiscale},codPersonale=${paziente.codiceMedico})}"> Visualizza Farmaci </a></td>
+        <td> <a href="farmaciSomministrati?codPaziente" th:href="@{farmaciSomministrati(codPaziente=${paziente.codFiscale})}"> Visualizza Farmaci Somministrati </a></td>
+        <td> <a href="inserisciFarmaco?codPaziente&codPersonale" th:href="@{inserisciFarmaco(codPaziente=${paziente.codFiscale},codPersonale=${paziente.codiceMedico})}"> Inserisci Farmaco </a></td>
+
+
+
+    </tr>
+    </tbody>
+</table>
+<center>
+<form>
+    <input type="button" value="Torna indietro"
+           onClick="history.go(-1);return true;"
+           name="button">
+</form>
+</center>
+</body>

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>MVC Web application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        form{
+        font-family: Arial; font-size: 15px;
+        width:200px;
+        padding:30px;
+        margin-left:auto;
+        margin-right:auto;
+        border-style:solid;
+
+        }
+        h1{
+        text-align: center;
+        }
+        input{
+        margin-bottom:10px;
+        }
+        input[type=submit] {
+          background-color: white;
+          color: black;
+          border: 2px solid black;
+          margin-top:10px;
+          padding: 10px 20px;
+          display: inline-block;
+        }
+
+        input[type=submit]:hover {
+          background-color:  #add8e6;
+          color: black;
+        }
+    </style>
+</head>
+
+<body>
+<h1>Login</h1>
+
+<form action="logManager" method="post">
+    Chiave:<br><input type="password" name="chiave"><br>
+    <center><input  type="submit" /></center>
+</form>
+
+</body>
+</html>

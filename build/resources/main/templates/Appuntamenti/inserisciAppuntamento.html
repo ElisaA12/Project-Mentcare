@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>MVC Web application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+    form{
+    font-family: Arial; font-size: 15px;
+    width:200px;
+    padding:30px;
+    margin-left:auto;
+    margin-right:auto;
+    border-style:solid;
+
+    }
+    body{
+    text-align: center;
+    }
+    input[type=submit], a:link {
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    margin-top:10px;
+    padding: 10px 20px;
+    display: inline-block;
+    }
+
+    input[type=submit]:hover,  a:hover {
+    background-color:  #add8e6;
+    color: black;
+    }
+    </style>
+</head>
+
+<body>
+<h1>Inserisci appuntamento</h1>
+
+<form action="inserisciApp"  method="post" th:object="${appuntamento}">
+    Data:<input type="datetime-local" name="data" required><br>
+    Indirizzo:<input type="text" name="indirizzo" required><br>
+    Descrizione:<input type="text" name="descrizione" required><br>
+    <input type="hidden" name="codFiscalePaziente" value="10" th:value="${paziente.codFiscale}">
+    <input type="hidden" name="codFiscalePersonale" value="10" th:value="${personale.codFiscale}">
+    <input type="hidden" name="nomePaziente" value="10" th:value="${personale.nome}">
+    <input type="hidden" name="cognomePaziente" value="10" th:value="${personale.cognome}">
+    <input type="hidden" name="nomePersonale" value="10" th:value="${personale.nome}">
+    <input type="hidden" name="cognomePersonale" value="10" th:value="${personale.cognome}">
+    <input type="hidden" name="ambulatorio" value="10" th:value="${personale.ambulatorio}">
+    <input type="submit" />
+</form>
+
+
+</body>
+</html>

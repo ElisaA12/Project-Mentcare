@@ -1,0 +1,104 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MVC Web application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body{
+        text-align:center;
+        }
+        h1{
+        text-align: center;
+        }
+        input{
+        margin-bottom:10px;
+        }
+        th, td {
+        border: 1px solid black;
+        padding: 8px;
+        }
+
+        thead th {
+          width: 25%;
+        }
+
+        thead {
+          background-color: #add8e6;
+          color: black;
+        }
+        table {
+        widht:500px;
+        border-collapse:collapse;
+        margin-left:auto;
+        margin-right:auto;
+        }
+        input[type=submit] {
+          background-color: white;
+          color: black;
+          border: 2px solid black;
+          margin-top:10px;
+          padding: 5px 10px;
+          display: inline-block;
+        }
+
+        input[type=submit]:hover {
+          background-color:  #add8e6;
+          color: black;
+        }
+        a:link {
+          margin-bottom:10px;
+          text-decoration: none;
+          background-color: white;
+          color: black;
+          border: 2px solid black;
+          margin-top:10px;
+          padding: 5px 10px;
+          display: inline-block;
+        }
+        a:hover {
+          background-color:  #add8e6;
+          color: black;
+        }
+
+        form{
+        padding-top:3px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+<h1>Lista farmaci</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Id Farmaco</th>
+        <th>Codice Fiscale Paziente</th>
+        <th>Nome Farmaco</th>
+        <th>Dose per giorno</th>
+        <th>Numero di giorni</th>
+        <th>Costo</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="farmaco: ${Farm}">
+        <td th:text="${farmaco.idFarmaco}"></td>
+        <td th:text="${farmaco.codPaziente}"></td>
+        <td th:text="${farmaco.nome_farmaco}"></td>
+        <td th:text="${farmaco.dose}"></td>
+        <td th:text="${farmaco.numGiorni}"></td>
+        <td th:text="${farmaco.costo}"></td>
+
+    </tr>
+    </tbody>
+</table>
+<form>
+    <input type="button" value="Torna indietro"
+           onClick="history.go(-1);return true;"
+           name="button">
+</form>
+
+</body>
