@@ -78,7 +78,7 @@ public class AppController implements univr.structure.PazienteNonAutoSufficiente
         return "login";
     }
 
-    //Login utente
+    //Login utentez
     @RequestMapping(value = "/log", method = RequestMethod.POST)
     public String loginP(@RequestParam(name = "username", required = true) String username,
                          @RequestParam(name = "password", required = true) String password,
@@ -412,33 +412,15 @@ public class AppController implements univr.structure.PazienteNonAutoSufficiente
                 if(fs.getIdFarmaco().equals(codFarmaci) && fs.getCodPaziente().equals(codPaziente)){
                     farmaciSomministrati.add(fs);
                     // inizializzo il nuovo farmaco somministrato con le informazioni di quello già somministrato
-                    newFarmacoSomministrato.setIdFarmaco(fs.getIdFarmaco());
-                    newFarmacoSomministrato.setSomministrato(true);
-                    newFarmacoSomministrato.setNome_farmaco(fs.getNome_farmaco());
-                    newFarmacoSomministrato.setCosto(fs.getCosto());
-                    newFarmacoSomministrato.setCodPaziente(fs.getCodPaziente());
-                    newFarmacoSomministrato.setCodMedico(fs.getCodMedico());
-                    newFarmacoSomministrato.setNumGiorni(fs.getNumGiorni());
-                    newFarmacoSomministrato.setDose(fs.getDose());
-                    newFarmacoSomministrato.setSomministratore((fs.getSomministratore()));
                 }
             }
             //se il farmaco è già stato somministrato in precedenza aumento di 1 il numero di giorni già completati
             if (!farmaciSomministrati.isEmpty()){
-                newFarmacoSomministrato.setNumGiorni(newFarmacoSomministrato.getNumGiorni()+1);
+                newFarmacoSomministrato.copiaUltimaSomministrazione( farmaciSomministrati.get(farmaciSomministrati.size()-1));
             }
             //se il farmaco è alla prima somministrazione inserisco le informazioni in base al farmaco ancora da somministrare
             else{
-                newFarmacoSomministrato.setIdFarmaco(codFarmaci);
-                //setto la variabile booleana 'somministrato' a true per indicare che è stato assunto
-                newFarmacoSomministrato.setSomministrato(true);
-                newFarmacoSomministrato.setNome_farmaco(farmaco.getNome_farmaco());
-                newFarmacoSomministrato.setCosto(farmaco.getCosto());
-                newFarmacoSomministrato.setCodPaziente(codPaziente);
-                newFarmacoSomministrato.setCodMedico(farmaco.getCodMedico());
-                //setto ad 1 il numero di giorni per indicare che è il primo giorno in cui viene somministrato
-                newFarmacoSomministrato.setNumGiorni(1);
-                newFarmacoSomministrato.setDose(farmaco.getDose());
+                newFarmacoSomministrato.copiaFarmaco( farmaco);
             }
             //Se dal sistema non viene passato un cod personale vuol dire che è stato il paziente a somministrarlo
             if (codPersonale.equals("")){
