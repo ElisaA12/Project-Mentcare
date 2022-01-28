@@ -36,8 +36,8 @@ public class UnitTest {
         assertEquals("comune", paziente.getComune());
         assertEquals(2, paziente.getCap());
         assertEquals("provincia", paziente.getProvincia());
-        assertEquals(Long.valueOf(123L), Long.valueOf(paziente.getTelefono1()));
-        assertEquals(Long.valueOf(23L), Long.valueOf(paziente.getTelefono2()));
+        assertEquals(Long.valueOf(123L), paziente.getTelefono1());
+        assertEquals(Long.valueOf(23L), paziente.getTelefono2());
         assertEquals("joker", paziente.getPatologia());
         assertEquals("boh", paziente.getDescrizione());
         assertTrue(paziente.isAutosufficiente());
@@ -99,12 +99,12 @@ public class UnitTest {
         assertEquals("comune", personaleMedico.getComune());
         assertEquals(2, personaleMedico.getCap());
         assertEquals("provincia", personaleMedico.getProvincia());
-        assertEquals(Long.valueOf(123L), Long.valueOf(personaleMedico.getTelefono1()));
-        assertEquals(Long.valueOf(23L), Long.valueOf(personaleMedico.getTelefono2()));
+        assertEquals(Long.valueOf(123L), personaleMedico.getTelefono1());
+        assertEquals(Long.valueOf(23L), personaleMedico.getTelefono2());
         assertEquals("Medico", personaleMedico.getRuolo());
         assertEquals("clinica", personaleMedico.getClinica());
-        assertEquals(Long.valueOf(12L), Long.valueOf(personaleMedico.getIdClinica()));
-        assertEquals(Long.valueOf(1L), Long.valueOf(personaleMedico.getAmbulatorio()));
+        assertEquals(Long.valueOf(12L), personaleMedico.getIdClinica());
+        assertEquals(Long.valueOf(1L), personaleMedico.getAmbulatorio());
     }
 
     @Test
@@ -125,6 +125,7 @@ public class UnitTest {
         personaleMedico.setProvincia("provincia");
         personaleMedico.setTelefono1(123L);
         personaleMedico.setTelefono2(23L);
+        personaleMedico.setRuolo("Medico");
         personaleMedico.setClinica("clinica");
         personaleMedico.setIdClinica(12L);
         personaleMedico.setAmbulatorio(1L);
@@ -138,12 +139,12 @@ public class UnitTest {
         assertEquals("comune", personaleMedico.getComune());
         assertEquals(2, personaleMedico.getCap());
         assertEquals("provincia", personaleMedico.getProvincia());
-        assertEquals(Long.valueOf(123L), Long.valueOf(personaleMedico.getTelefono1()));
-        assertEquals(Long.valueOf(23L), Long.valueOf(personaleMedico.getTelefono2()));
+        assertEquals(Long.valueOf(123L), personaleMedico.getTelefono1());
+        assertEquals(Long.valueOf(23L), personaleMedico.getTelefono2());
         assertEquals("Medico", personaleMedico.getRuolo());
         assertEquals("clinica", personaleMedico.getClinica());
-        assertEquals(Long.valueOf(12L), Long.valueOf(personaleMedico.getIdClinica()));
-        assertEquals(Long.valueOf(1L), Long.valueOf(personaleMedico.getAmbulatorio()));
+        assertEquals(Long.valueOf(12L), personaleMedico.getIdClinica());
+        assertEquals(Long.valueOf(1L), personaleMedico.getAmbulatorio());
     }
 
     @Test
@@ -156,7 +157,7 @@ public class UnitTest {
         assertEquals("nome", farmaci.getNome_farmaco());
         assertEquals(2, farmaci.getDose());
         assertEquals(31, farmaci.getNumGiorni());
-        assertEquals(null, farmaci.getSomministratore());
+        assertNull(farmaci.getSomministratore());
         assertFalse(farmaci.isSomministrato());
         assertEquals(20, farmaci.getCosto(), 0);
         assertEquals("med", farmaci.getCodMedico());
@@ -182,7 +183,7 @@ public class UnitTest {
         assertEquals("nome", farmaci.getNome_farmaco());
         assertEquals(2, farmaci.getDose());
         assertEquals(31, farmaci.getNumGiorni());
-        assertEquals(null, farmaci.getSomministratore());
+        assertNull(farmaci.getSomministratore());
         assertFalse(farmaci.isSomministrato());
         assertEquals(20.8, farmaci.getCosto(), 0);
         assertEquals("med", farmaci.getCodMedico());
@@ -252,7 +253,7 @@ public class UnitTest {
         assertEquals("nome", farmaci.getNome_farmaco());
         assertEquals(2, farmaci.getDose());
         assertEquals(31, farmaci.getNumGiorni());
-        assertEquals(null, farmaci.getSomministratore());
+        assertNull(farmaci.getSomministratore());
         assertFalse(farmaci.isSomministrato());
         assertEquals(20, farmaci.getCosto(), 0);
         assertEquals("med", farmaci.getCodMedico());
@@ -278,9 +279,47 @@ public class UnitTest {
         assertEquals("nome", farmaci.getNome_farmaco());
         assertEquals(2, farmaci.getDose());
         assertEquals(31, farmaci.getNumGiorni());
-        assertEquals(null, farmaci.getSomministratore());
+        assertNull(farmaci.getSomministratore());
         assertFalse(farmaci.isSomministrato());
         assertEquals(20.8, farmaci.getCosto(), 0);
         assertEquals("med", farmaci.getCodMedico());
     }
+
+    @Test
+    public void testCopiaUltimaSomministrazione() throws Exception {
+        FarmaciSomministrati farmaci = new FarmaciSomministrati("paziente", "id2", "farm", 20,
+                3, "cppgli", false, 20, "medico");
+
+        FarmaciSomministrati farmaciSomministrati = new FarmaciSomministrati();
+        farmaciSomministrati.copiaUltimaSomministrazione( farmaci );
+
+        assertEquals("paziente", farmaciSomministrati.getCodPaziente());
+        assertEquals("id2", farmaciSomministrati.getIdFarmaco());
+        assertEquals("farm", farmaciSomministrati.getNome_farmaco());
+        assertEquals(20, farmaciSomministrati.getDose());
+        assertEquals(farmaci.getNumGiorni()+1, farmaciSomministrati.getNumGiorni());
+        assertTrue(farmaciSomministrati.isSomministrato());
+        assertEquals(20, farmaciSomministrati.getCosto(), 0);
+        assertEquals("medico", farmaciSomministrati.getCodMedico());
+
+    }
+    @Test
+    public void testCopiaFarmaco() throws Exception {
+        Farmaci farmaci = new Farmaci("paziente", "id2", "farm", 20,
+                3, "cppgli", false, 20, "medico");
+
+        FarmaciSomministrati farmaciSomministrati = new FarmaciSomministrati();
+        farmaciSomministrati.copiaFarmaco( farmaci );
+
+        assertEquals("paziente", farmaciSomministrati.getCodPaziente());
+        assertEquals("id2", farmaciSomministrati.getIdFarmaco());
+        assertEquals("farm", farmaciSomministrati.getNome_farmaco());
+        assertEquals(20, farmaciSomministrati.getDose());
+        assertEquals(1, farmaciSomministrati.getNumGiorni());
+        assertTrue(farmaciSomministrati.isSomministrato());
+        assertEquals(20, farmaciSomministrati.getCosto(), 0);
+        assertEquals("medico", farmaciSomministrati.getCodMedico());
+
+    }
+
 }
