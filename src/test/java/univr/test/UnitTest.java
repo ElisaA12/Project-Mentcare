@@ -285,7 +285,42 @@ public class UnitTest {
         assertEquals("med", farmaci.getCodMedico());
     }
 
-    
+
+
+    @Test
+    public void testCopiaUltimaSomministrazione() throws Exception {
+        FarmaciSomministrati farmaciSomministrati = new FarmaciSomministrati("paz","id","nome",2,
+                31,null,false,20,"med");
+
+        FarmaciSomministrati farmaci = new FarmaciSomministrati();
+        farmaci.copiaUltimaSomministrazione(farmaciSomministrati);
+
+        assertEquals("paz", farmaci.getCodPaziente());
+        assertEquals("id", farmaci.getIdFarmaco());
+        assertEquals("nome", farmaci.getNome_farmaco());
+        assertEquals(2, farmaci.getDose());
+        assertEquals(farmaciSomministrati.getNumGiorni()+1, farmaci.getNumGiorni());
+        assertTrue(farmaci.isSomministrato());
+        assertEquals(20, farmaci.getCosto(), 0);
+        assertEquals("med", farmaci.getCodMedico());
+    }
+
+    @Test
+    public void testCopiaFarmaco() throws Exception {
+        Farmaci farmaco = new Farmaci("paz","id","nome",2,
+                31,null,false,20,"med");
+        FarmaciSomministrati farmaci = new FarmaciSomministrati();
+        farmaci.copiaFarmaco(farmaco);
+
+        assertEquals("paz", farmaci.getCodPaziente());
+        assertEquals("id", farmaci.getIdFarmaco());
+        assertEquals("nome", farmaci.getNome_farmaco());
+        assertEquals(2, farmaci.getDose());
+        assertEquals(1, farmaci.getNumGiorni());
+        assertTrue(farmaci.isSomministrato());
+        assertEquals(20, farmaci.getCosto(), 0);
+        assertEquals("med", farmaci.getCodMedico());
+    }
         
 
 }
