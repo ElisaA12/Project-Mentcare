@@ -246,7 +246,9 @@ Successivamente alla fase di raccolta e specifica dei requisiti abbiamo provvedu
 		 - Infermiere extends Personale medico
 		 - Medico extends Personale Medico 
 
+
 # Testing
+
 
 ### Scenario registrazione
 TestRegistrazionePazienteValida
@@ -337,4 +339,15 @@ TestVisualizzaPazienteCodFiscaleValida
 TestVisualizzaPazientiNonValida
 >Il medico cerca di visualizzare un suo paziente inserendo in modo errato il suo codice fiscale. Verrà reindirizzato alla pagina che gli notifica che l'account non è presente.
 
+
+## Test Coverage 
+### System Test
+Class, % : 100% (14/14)
+Method, %: 96% (294/306)
+Line, %: 87% (788/890)
+
+### Unit Test
+Class, % : 85% (12/14)
+Method, %: 82% (252/306)
+Line, %: 44% (404/890)
 
