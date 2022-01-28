@@ -101,4 +101,30 @@ public class FarmaciSomministrati {
     public void setSomministratore(String somministratore) {
         this.somministratore = somministratore;
     }
+
+    public FarmaciSomministrati copiaUltimaSomministrazione( FarmaciSomministrati fs){
+        this.setIdFarmaco(fs.getIdFarmaco());
+        this.setSomministrato(true);
+        this.setNome_farmaco(fs.getNome_farmaco());
+        this.setCosto(fs.getCosto());
+        this.setCodPaziente(fs.getCodPaziente());
+        this.setCodMedico(fs.getCodMedico());
+        this.setNumGiorni(fs.getNumGiorni()+1);
+        this.setDose(fs.getDose());
+        return this;
+    }
+
+    public FarmaciSomministrati copiaFarmaco( Farmaci farmaco){
+        this.setIdFarmaco(farmaco.getIdFarmaco());
+        //setto la variabile booleana 'somministrato' a true per indicare che è stato assunto
+        this.setSomministrato(true);
+        this.setNome_farmaco(farmaco.getNome_farmaco());
+        this.setCosto(farmaco.getCosto());
+        this.setCodPaziente(farmaco.getCodPaziente());
+        this.setCodMedico(farmaco.getCodMedico());
+        //setto ad 1 il numero di giorni per indicare che è il primo giorno in cui viene somministrato
+        this.setNumGiorni(1);
+        this.setDose(farmaco.getDose());
+        return this;
+    }
 }
