@@ -5,6 +5,10 @@ import javax.persistence.*;
 @Entity
 public class FarmaciSomministrati {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private Long id;
+    
     private String idFarmaco;
     private String codPaziente;
     private String nome_farmaco;
