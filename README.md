@@ -1,5 +1,5 @@
 # Progetto Mentcare - Ingegneria del Software
-*Elisa Acciari VR478828 , Giulio Cappelletti VR478827
+*Elisa Acciari , Giulio Cappelletti 
 A.A. 2021/2022 
 Università degli Studi di Verona.*
 
